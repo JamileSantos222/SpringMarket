@@ -6,7 +6,6 @@
 </head>
 <body class="bg-gray-100">
 
-<!-- Navbar usando DaisyUI -->
 <div class="navbar bg-base-300">
     <div class="flex-1">
         <a class="btn btn-ghost text-xl">🛒 Spring Market</a>
@@ -14,13 +13,13 @@
 </div>
 
 <div class="container mx-auto mt-6 p-4">
-    <!-- Formulário de Adição -->
+    
     <form th:action="@{/adicionar}" method="post" class="flex gap-2 mb-6">
         <input type="text" name="nome" placeholder="Novo item..." class="input input-bordered w-full" required />
         <button type="submit" class="btn btn-primary">Adicionar</button>
     </form>
 
-    <!-- Lista de Itens -->
+    
     <ul class="space-y-2">
         <li th:each="item : ${itens}" class="flex items-center justify-between p-4 bg-white shadow rounded">
             <span th:text="${item.nome}"
