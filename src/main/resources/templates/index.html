@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Spring Market</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+<!-- Navbar usando DaisyUI -->
+<div class="navbar bg-base-300">
+    <div class="flex-1">
+        <a class="btn btn-ghost text-xl">🛒 Spring Market</a>
+    </div>
+</div>
+
+<div class="container mx-auto mt-6 p-4">
+    <!-- Formulário de Adição -->
+    <form th:action="@{/adicionar}" method="post" class="flex gap-2 mb-6">
+        <input type="text" name="nome" placeholder="Novo item..." class="input input-bordered w-full" required />
+        <button type="submit" class="btn btn-primary">Adicionar</button>
+    </form>
+
+    <!-- Lista de Itens -->
+    <ul class="space-y-2">
+        <li th:each="item : ${itens}" class="flex items-center justify-between p-4 bg-white shadow rounded">
+            <span th:text="${item.nome}"
+                  th:classappend="${item.comprado} ? 'line-through text-gray-400' : ''"></span>
+
+            <div class="space-x-2">
+                <a th:href="@{'/comprar/' + ${item.id}}" class="btn btn-sm"
+                   th:classappend="${item.comprado} ? 'btn-warning' : 'btn-success'">
+                    <span th:text="${item.comprado} ? 'Desmarcar' : 'Comprar'"></span>
+                </a>
+                <a th:href="@{'/deletar/' + ${item.id}}" class="btn btn-sm btn-error">Remover</a>
+            </div>
+        </li>
+    </ul>
+</div>
+
+</body>
+</html>
